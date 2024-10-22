@@ -1,8 +1,58 @@
+import {FormEvent, useState} from "react"
+import useModal from "../hooks/useModal"
+
 const AddTodoModal = () => {
+	const {closeModal} = useModal()
+
+	// form handler hooks
+	const [title, setTitle] = useState("")
+	const [description, setDescription] = useState("")
+	const [date, setDate] = useState("")
+
+	const onSubmit = (e: FormEvent) => {
+		e.preventDefault()
+		console.log({title, description, date})
+		closeModal()
+	}
+
 	return (
 		<div className="fixed bg-black/50 inset-0 w-full h-full flex justify-center items-center">
-			<div className="bg-white rounded-lg">
-				<h1>Hello modal</h1>
+			<div className="bg-white rounded-lg p-10">
+				<form onSubmit={onSubmit} action="" className="flex flex-col gap-10">
+					<div>
+						<label htmlFor="title">Title : </label>
+						<input
+							onBlur={(e) => setTitle(e.target.value)}
+							type="text"
+							name="title"
+							placeholder="Write title"
+						/>
+					</div>
+					<div>
+						<label htmlFor="time">Date : </label>
+						<input
+							onChange={(e) => setDate(e.target.value)}
+							type="date"
+							name="date"
+							placeholder="title"
+						/>
+					</div>
+					<div>
+						<label htmlFor="description">Description : </label>
+						<input
+							onBlur={(e) => setDescription(e.target.value)}
+							type="text"
+							name="description"
+							placeholder="Write Description"
+						/>
+					</div>
+					<button
+						type="submit"
+						className="bg-black px-4 py-2 text-white capitalize text-2xl rounded-lg hover:bg-transparent hover:text-black border-2 border-black transition-colors duration-300"
+					>
+						Submit Todo
+					</button>
+				</form>
 			</div>
 		</div>
 	)

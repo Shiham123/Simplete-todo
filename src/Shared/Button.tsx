@@ -2,7 +2,6 @@ import useModal from "../hooks/useModal"
 
 const Button = () => {
 	const {openModal} = useModal()
-	console.log(openModal)
 
 	return (
 		<div className="flex justify-between items-center">
