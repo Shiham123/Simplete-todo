@@ -1,5 +1,7 @@
 import {FormEvent, useState} from "react"
 import useModal from "../hooks/useModal"
+import {useAppDispatch} from "../app/hook"
+import {addTodo} from "../app/features/todoSlice"
 
 const AddTodoModal = () => {
 	const {closeModal} = useModal()
@@ -7,11 +9,15 @@ const AddTodoModal = () => {
 	// form handler hooks
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
-	const [date, setDate] = useState("")
+
+	// dispatch use app dispatch with custom hook
+	const dispatch = useAppDispatch()
 
 	const onSubmit = (e: FormEvent) => {
 		e.preventDefault()
-		console.log({title, description, date})
+		const taskDetails = {title: title, description: description}
+		dispatch(addTodo(taskDetails))
+
 		closeModal()
 	}
 
@@ -30,12 +36,7 @@ const AddTodoModal = () => {
 					</div>
 					<div>
 						<label htmlFor="time">Date : </label>
-						<input
-							onChange={(e) => setDate(e.target.value)}
-							type="date"
-							name="date"
-							placeholder="title"
-						/>
+						<input type="date" name="date" placeholder="title" />
 					</div>
 					<div>
 						<label htmlFor="description">Description : </label>
