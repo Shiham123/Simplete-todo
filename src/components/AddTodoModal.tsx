@@ -14,8 +14,11 @@ const AddTodoModal = () => {
 	const dispatch = useAppDispatch()
 
 	const onSubmit = (e: FormEvent) => {
+		// random id generate for delete todo
+		const randomString = Math.random().toString(36).substring(2, 7)
+
 		e.preventDefault()
-		const taskDetails = {title: title, description: description}
+		const taskDetails = {id: randomString, title: title, description: description}
 		dispatch(addTodo(taskDetails))
 
 		closeModal()

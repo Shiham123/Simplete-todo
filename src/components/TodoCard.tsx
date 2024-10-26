@@ -1,13 +1,27 @@
-const TodoCard = () => {
-	return (
-		<div className="bg-white rounded-md flex justify-between items-center p-4">
-			<input type="checkbox" name="" id="" />
-			<p className="font-semibold">Todo Title</p>
-			<p>Todo Created Time</p>
-			<p>Short Description</p>
+import {removeTodo} from "../app/features/todoSlice"
+import {useAppDispatch} from "../app/hook"
 
+type TTodoCardProps = {
+	title: string
+	description: string
+	id: string
+	isCompleted: boolean
+}
+
+const TodoCard = ({title, description, id, isCompleted}: TTodoCardProps) => {
+	// handle dispatch and delete method
+	const dispatch = useAppDispatch()
+
+	return (
+		<div key={id} className="bg-white rounded-md flex justify-between items-center p-4">
+			<input type="checkbox" name="" id="" />
+			<p className="font-semibold">{title}</p>
+			<p>Todo Created Time</p>
+			<p>{description}</p>
+
+			{/* delete button */}
 			<div className="flex space-x-4">
-				<button className="bg-red-500 p-2 rounded-lg">
+				<button onClick={() => dispatch(removeTodo(id))} className="bg-red-500 p-2 rounded-lg">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="white"
