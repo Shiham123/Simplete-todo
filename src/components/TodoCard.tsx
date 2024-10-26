@@ -1,22 +1,27 @@
-import {removeTodo} from "../app/features/todoSlice"
+import {removeTodo, toggleIsComplete} from "../app/features/todoSlice"
 import {useAppDispatch} from "../app/hook"
 
 type TTodoCardProps = {
 	title: string
 	description: string
 	id: string
-	isCompleted: boolean
+	isCompleted?: boolean
 }
 
 const TodoCard = ({title, description, id, isCompleted}: TTodoCardProps) => {
 	// handle dispatch and delete method
 	const dispatch = useAppDispatch()
 
+	// handle complete or not complete
+	const toggleComplete = () => {
+		dispatch(toggleIsComplete(id))
+	}
+
 	return (
 		<div key={id} className="bg-white rounded-md flex justify-between items-center p-4">
-			<input type="checkbox" name="" id="" />
+			<input onChange={toggleComplete} type="checkbox" name="" id="" />
 			<p className="font-semibold">{title}</p>
-			<p>Todo Created Time</p>
+			<p>{isCompleted ? "Done" : "pending"}</p>
 			<p>{description}</p>
 
 			{/* delete button */}
