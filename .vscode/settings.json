@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["MERN", "reduxjs", "shiham", "tailwindcss", "todos"],
+  "cSpell.words": [
+    "MERN",
+    "Parens",
+    "reduxjs",
+    "shiham",
+    "tailwindcss",
+    "todos"
+  ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#3e3e40",
     "activityBar.background": "#3e3e40",
