@@ -27,3 +27,5 @@ app.listen(port, () => {
 	// eslint-disable-next-line no-console
 	console.log(`http://localhost:${port}`)
 })
+
+// TODO: next time i will setup app/controller/database/handler/models/router also with mongoose
