@@ -2,9 +2,9 @@ import {removeTodo, toggleIsComplete} from "../app/features/todoSlice"
 import {useAppDispatch} from "../app/hook"
 
 type TTodoCardProps = {
+	id: string
 	title: string
 	description: string
-	id: string
 	isCompleted?: boolean
 }
 

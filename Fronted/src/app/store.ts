@@ -7,6 +7,7 @@ const store = configureStore({
 		[baseApi.reducerPath]: baseApi.reducer,
 		todos: TodoReducer,
 	},
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 // ! typescript type initialization
