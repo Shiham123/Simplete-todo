@@ -1,8 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit"
 import TodoReducer from "./features/todoSlice"
+import {baseApi} from "./api/api"
 
 const store = configureStore({
 	reducer: {
+		[baseApi.reducerPath]: baseApi.reducer,
 		todos: TodoReducer,
 	},
 })
