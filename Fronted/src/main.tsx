@@ -12,6 +12,6 @@ createRoot(document.getElementById("root")!).render(
 			<ModalProvider>
 				<App />
 			</ModalProvider>
-		</Provider>
+		</Provider> 
 	</StrictMode>,
 )
