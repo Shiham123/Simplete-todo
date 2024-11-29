@@ -13,15 +13,16 @@ const AddTodoModal = () => {
 	// form handler hooks
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
+	const [priority, setPriority] = useState("")
 
 	// dispatch use app dispatch with custom hook
 	// !for local state management
 	// const dispatch = useAppDispatch()
 
 	// !for server
-	const [addTodo, {data, isLoading}] = useAddTodoMutation()
+	const [addTodo, {data, isLoading, isError, isSuccess}] = useAddTodoMutation()
 
-	console.log(addTodo, data, isLoading)
+	console.log("outside api / modal", {data, isLoading, isError, isSuccess})
 
 	const onSubmit = (e: FormEvent) => {
 		// for local
@@ -29,8 +30,9 @@ const AddTodoModal = () => {
 		// const randomString = Math.random().toString(36).substring(2, 7)
 
 		e.preventDefault()
-		const taskDetails = {title: title, description: description}
+		const taskDetails = {title: title, description, isCompleted: false, priority}
 
+		console.log("inside modal", taskDetails)
 		// !for server
 		addTodo(taskDetails)
 
@@ -38,6 +40,10 @@ const AddTodoModal = () => {
 		// dispatch(addTodo(taskDetails))
 
 		closeModal()
+	}
+
+	const handlePriorityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setPriority(event.target.value)
 	}
 
 	return (
@@ -58,6 +64,23 @@ const AddTodoModal = () => {
 						<label htmlFor="time">Date : </label> 
 						<input type="date" name="date" placeholder="title" />
 					</div> */}
+
+					<div>
+						<label htmlFor="priority">Priority: </label>
+						<select
+							onChange={handlePriorityChange}
+							name="priority"
+							className="p-2 rounded border"
+							value={priority}
+						>
+							<option value="" disabled>
+								Select Priority
+							</option>
+							<option value="High">High</option>
+							<option value="Medium">Medium</option>
+							<option value="Low">Low</option>
+						</select>
+					</div>
 					<div>
 						<label htmlFor="description">Description : </label>
 						<input

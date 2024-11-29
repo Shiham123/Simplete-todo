@@ -8,7 +8,14 @@ const baseApi = createApi({
 			query: () => ({url: "/api/task", method: "GET"}),
 		}),
 		addTodo: builder.mutation({
-			query: (data) => ({url: "/task", method: "POST", body: data}),
+			query: (data) => {
+				console.log("inside base api", data)
+				return {
+					url: "/api/task",
+					method: "POST",
+					body: data,
+				}
+			},
 		}),
 	}),
 })
