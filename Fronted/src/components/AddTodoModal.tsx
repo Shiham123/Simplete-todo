@@ -30,7 +30,7 @@ const AddTodoModal = () => {
 		// const randomString = Math.random().toString(36).substring(2, 7)
 
 		e.preventDefault()
-		const taskDetails = {title: title, description, isCompleted: false, priority}
+		const taskDetails = {title, description, isCompleted: false, priority}
 
 		console.log("inside modal", taskDetails)
 		// !for server

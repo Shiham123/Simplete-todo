@@ -17,15 +17,17 @@ const getAllTask = (req, res) => {
 		})
 }
 
+// posted a task
 const postTask = (req, res) => {
-	const {title, details} = req.body
+	const {title, description, isCompleted, priority} = req.body
+	const postedData = {title, description, isCompleted, priority}
 
-	if (!title || !details) {
+	if (!postedData) {
 		return errorResponse(res, {statusCode: 400, message: "Title and description are required"})
 	}
 
 	taskSchema
-		.create({title, details})
+		.create(postedData)
 		.then((newTask) => {
 			return successResponse(res, {
 				statusCode: 200,
