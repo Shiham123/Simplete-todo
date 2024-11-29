@@ -20,9 +20,7 @@ const AddTodoModal = () => {
 	// const dispatch = useAppDispatch()
 
 	// !for server
-	const [addTodo, {data, isLoading, isError, isSuccess}] = useAddTodoMutation()
-
-	console.log("outside api / modal", {data, isLoading, isError, isSuccess})
+	const [addTodo] = useAddTodoMutation()
 
 	const onSubmit = (e: FormEvent) => {
 		// for local
@@ -32,7 +30,6 @@ const AddTodoModal = () => {
 		e.preventDefault()
 		const taskDetails = {title, description, isCompleted: false, priority}
 
-		console.log("inside modal", taskDetails)
 		// !for server
 		addTodo(taskDetails)
 
