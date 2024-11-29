@@ -4,6 +4,13 @@ import Button from "../Shared/Button"
 import AddTodoModal from "./AddTodoModal"
 import TodoCard from "./TodoCard"
 
+interface TTodo {
+	id: string
+	title: string
+	description: string
+	isCompleted: boolean
+}
+
 const TodoContainer = () => {
 	// get all todos from redux collection
 	// const {todos} = useAppSelector((state) => state.todos)
@@ -16,6 +23,7 @@ const TodoContainer = () => {
 	const {data: todos, isLoading, isError} = useGetTodosQuery(undefined)
 
 	if (isLoading) return <p>...loading</p>
+	if (isError) return <p>...error page</p>
 
 	return (
 		<>
@@ -28,7 +36,7 @@ const TodoContainer = () => {
 					<div className="bg-white p-3 flex justify-center items-center font-semibold uppercase text-3xl">
 						<p>This is no Task pending</p>
 					</div>
-					{todos?.payload.map((item) => (
+					{todos?.payload.map((item: TTodo) => (
 						<TodoCard
 							key={item.id}
 							id={item.id}
