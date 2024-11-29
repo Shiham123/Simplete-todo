@@ -1,7 +1,11 @@
 import {FormEvent, useState} from "react"
 import useModal from "../hooks/useModal"
-import {useAppDispatch} from "../app/hook"
-import {addTodo} from "../app/features/todoSlice"
+
+// for local
+// import { addTodo } from "../app/features/todoSlice"
+
+// for server
+import {useAddTodoMutation} from "../app/api/api"
 
 const AddTodoModal = () => {
 	const {closeModal} = useModal()
@@ -11,15 +15,27 @@ const AddTodoModal = () => {
 	const [description, setDescription] = useState("")
 
 	// dispatch use app dispatch with custom hook
-	const dispatch = useAppDispatch()
+	// !for local state management
+	// const dispatch = useAppDispatch()
+
+	// !for server
+	const [addTodo, {data, isLoading}] = useAddTodoMutation()
+
+	console.log(addTodo, data, isLoading)
 
 	const onSubmit = (e: FormEvent) => {
+		// for local
 		// random id generate for delete todo
-		const randomString = Math.random().toString(36).substring(2, 7)
+		// const randomString = Math.random().toString(36).substring(2, 7)
 
 		e.preventDefault()
-		const taskDetails = {id: randomString, title: title, description: description}
-		dispatch(addTodo(taskDetails))
+		const taskDetails = {title: title, description: description}
+
+		// !for server
+		addTodo(taskDetails)
+
+		// !for local state management
+		// dispatch(addTodo(taskDetails))
 
 		closeModal()
 	}
@@ -37,10 +53,11 @@ const AddTodoModal = () => {
 							placeholder="Write title"
 						/>
 					</div>
-					<div>
-						<label htmlFor="time">Date : </label>
+					{/* for local */}
+					{/* <div>
+						<label htmlFor="time">Date : </label> 
 						<input type="date" name="date" placeholder="title" />
-					</div>
+					</div> */}
 					<div>
 						<label htmlFor="description">Description : </label>
 						<input

@@ -7,9 +7,12 @@ const baseApi = createApi({
 		getTodos: builder.query({
 			query: () => ({url: "/api/task", method: "GET"}),
 		}),
+		addTodo: builder.mutation({
+			query: (data) => ({url: "/task", method: "POST", body: data}),
+		}),
 	}),
 })
 
-const {useGetTodosQuery} = baseApi
+const {useGetTodosQuery, useAddTodoMutation} = baseApi
 
-export {baseApi, useGetTodosQuery}
+export {baseApi, useGetTodosQuery, useAddTodoMutation}
