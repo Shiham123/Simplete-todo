@@ -1,9 +1,11 @@
+import {useState} from "react"
 import {useGetTodosQuery} from "../app/api/api"
 import useModal from "../hooks/useModal"
 import Button from "../Shared/Button"
 import AddTodoModal from "./AddTodoModal"
 import TodoCard from "./TodoCard"
 
+// typeScript type initialize here
 interface TTodo {
 	id: string
 	title: string
@@ -15,6 +17,8 @@ interface TTodo {
 const TodoContainer = () => {
 	// get all todos from redux collection
 	// const {todos} = useAppSelector((state) => state.todos)
+
+	const [priority, setPriority] = useState("")
 
 	// custom hook
 	const {isModalOpen} = useModal()
@@ -30,7 +34,7 @@ const TodoContainer = () => {
 		<>
 			<div className="space-y-5">
 				{/* Todo Button Here */}
-				<Button />
+				<Button priority={priority} setPriority={setPriority} />
 
 				{/* todo Body Here */}
 				<div className="bg-red-500 w-full h-full rounded-md p-10 space-y-4">

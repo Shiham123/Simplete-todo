@@ -44,4 +44,25 @@ const postTask = (req, res) => {
 		})
 }
 
-module.exports = {postTask, getAllTask}
+const getTaskByParams = (req, res) => {
+	const {priority} = req.params
+
+	taskSchema
+		.find({priority})
+		.then((task) => {
+			return successResponse(res, {
+				statusCode: 202,
+				message: "sorted by params",
+				payload: task,
+			})
+		})
+		.catch((error) => {
+			return errorResponse(res, {
+				statusCode: 502,
+				message: "not able to sort by params",
+				errorPayload: error,
+			})
+		})
+}
+
+module.exports = {postTask, getAllTask, getTaskByParams}
