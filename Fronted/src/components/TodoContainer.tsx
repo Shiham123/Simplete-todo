@@ -9,6 +9,7 @@ interface TTodo {
 	title: string
 	description: string
 	isCompleted: boolean
+	priority: string
 }
 
 const TodoContainer = () => {
@@ -43,6 +44,7 @@ const TodoContainer = () => {
 							title={item.title}
 							description={item.description}
 							isCompleted={item.isCompleted}
+							priority={item.priority}
 						/>
 					))}
 				</div>

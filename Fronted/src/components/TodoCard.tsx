@@ -6,9 +6,10 @@ type TTodoCardProps = {
 	title: string
 	description: string
 	isCompleted?: boolean
+	priority: string
 }
 
-const TodoCard = ({title, description, id, isCompleted}: TTodoCardProps) => {
+const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProps) => {
 	// handle dispatch and delete method
 	const dispatch = useAppDispatch()
 
@@ -22,6 +23,7 @@ const TodoCard = ({title, description, id, isCompleted}: TTodoCardProps) => {
 			<input onChange={toggleComplete} type="checkbox" name="" id="" />
 			<p className="font-semibold">{title}</p>
 			<p>{isCompleted ? "Done" : "pending"}</p>
+			<p>{priority}</p>
 			<p>{description}</p>
 
 			{/* delete button */}
