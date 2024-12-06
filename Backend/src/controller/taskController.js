@@ -5,27 +5,26 @@ const taskSchema = require("../models/taskSchema")
 const getAllTask = (req, res) => {
 	const {priority} = req.query
 
-	if (!priority) {
-		taskSchema
-			.find()
-			.then((task) => {
-				return successResponse(res, {
-					statusCode: 201,
-					message: "successfully get all task data",
-					payload: task,
-				})
+	// find the data based on field
+	const query = priority ? {priority: priority} : {}
+
+	// declare schema and find data
+	taskSchema
+		.find(query)
+		.then((task) => {
+			return successResponse(res, {
+				statusCode: priority ? 202 : 201,
+				message: priority ? "Filtered data found" : "Successfully retrieved all task data",
+				payload: task,
 			})
-			.catch((error) => {
-				errorResponse(res, {
-					statusCode: 401,
-					message: "not able to create user",
-					errorPayload: error,
-				})
+		})
+		.catch((error) => {
+			return errorResponse(res, {
+				statusCode: 404,
+				message: priority ? "Could not find filtered data" : "Unable to retrieve tasks",
+				errorPayload: error,
 			})
-	} else {
-		// TODO: here i am build logic to find query based data
-		console.log("query", req.query)
-	}
+		})
 }
 
 // posted a task

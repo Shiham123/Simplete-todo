@@ -27,6 +27,8 @@ const TodoContainer = () => {
 	// from server
 	const {data: todos, isLoading, isError} = useGetTodosQuery(priority)
 
+	console.log(todos)
+
 	if (isLoading) return <p>...loading</p>
 	if (isError) return <p>...error page</p>
 
