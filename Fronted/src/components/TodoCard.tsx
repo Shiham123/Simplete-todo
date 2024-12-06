@@ -1,5 +1,7 @@
-import {removeTodo, toggleIsComplete} from "../app/features/todoSlice"
-import {useAppDispatch} from "../app/hook"
+// handle with local state
+// import {removeTodo, toggleIsComplete} from "../app/features/todoSlice"
+
+// import {useAppDispatch} from "../app/hook"
 
 type TTodoCardProps = {
 	id: string
@@ -11,16 +13,20 @@ type TTodoCardProps = {
 
 const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProps) => {
 	// handle dispatch and delete method
-	const dispatch = useAppDispatch()
+	// use local state here
+	// const dispatch = useAppDispatch()
 
+	// use local state here
 	// handle complete or not complete
-	const toggleComplete = () => {
-		dispatch(toggleIsComplete(id))
-	}
+	// const toggleComplete = () => {
+	// 	dispatch(toggleIsComplete(id))
+	// }
+
+	const deleteTodo = (todoId: string) => {}
 
 	return (
 		<div key={id} className="bg-white rounded-md flex justify-between items-center p-4">
-			<input onChange={toggleComplete} type="checkbox" name="" id="" />
+			<input type="checkbox" name="" id="" />
 			<p className="font-semibold">{title}</p>
 			<p>{isCompleted ? "Done" : "pending"}</p>
 			<p>{priority}</p>
@@ -28,7 +34,8 @@ const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProp
 
 			{/* delete button */}
 			<div className="flex space-x-4">
-				<button onClick={() => dispatch(removeTodo(id))} className="bg-red-500 p-2 rounded-lg">
+				{/* Todo Delete button */}
+				<button onClick={() => deleteTodo(id)} className="bg-red-500 p-2 rounded-lg">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="white"
@@ -44,6 +51,8 @@ const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProp
 						/>
 					</svg>
 				</button>
+
+				{/* todo edit button */}
 				<button className="bg-blue-500 p-2 rounded-lg">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

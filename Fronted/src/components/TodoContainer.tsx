@@ -7,7 +7,7 @@ import {useGetTodosQuery} from "../app/api/api"
 
 // typeScript type initialize here
 interface TTodo {
-	id: string
+	_id: string
 	title: string
 	description: string
 	isCompleted: boolean
@@ -27,8 +27,6 @@ const TodoContainer = () => {
 	// from server
 	const {data: todos, isLoading, isError} = useGetTodosQuery(priority)
 
-	console.log(todos)
-
 	if (isLoading) return <p>...loading</p>
 	if (isError) return <p>...error page</p>
 
@@ -45,8 +43,8 @@ const TodoContainer = () => {
 					</div>
 					{todos?.payload.map((item: TTodo) => (
 						<TodoCard
-							key={item.id}
-							id={item.id}
+							key={item._id}
+							id={item._id}
 							title={item.title}
 							description={item.description}
 							isCompleted={item.isCompleted}
