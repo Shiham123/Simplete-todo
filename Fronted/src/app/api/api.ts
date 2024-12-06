@@ -13,7 +13,12 @@ export const baseApi = createApi({
 			query: (data) => ({url: "/api/task", method: "POST", body: data}),
 			invalidatesTags: ["todo"],
 		}),
+		// delete todo RTK query URL generator
+		deleteTodos: builder.mutation({
+			query: (id) => ({url: `/api/task/${id}`, method: "DELETE"}),
+			invalidatesTags: ["todo"],
+		}),
 	}),
 })
 
-export const {useGetTodosQuery, useAddTodoMutation} = baseApi
+export const {useGetTodosQuery, useAddTodoMutation, useDeleteTodosMutation} = baseApi

@@ -22,8 +22,6 @@ const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProp
 	// 	dispatch(toggleIsComplete(id))
 	// }
 
-	const deleteTodo = (todoId: string) => {}
-
 	return (
 		<div key={id} className="bg-white rounded-md flex justify-between items-center p-4">
 			<input type="checkbox" name="" id="" />
@@ -35,7 +33,7 @@ const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProp
 			{/* delete button */}
 			<div className="flex space-x-4">
 				{/* Todo Delete button */}
-				<button onClick={() => deleteTodo(id)} className="bg-red-500 p-2 rounded-lg">
+				<button className="bg-red-500 p-2 rounded-lg">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="white"

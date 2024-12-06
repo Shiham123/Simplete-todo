@@ -54,4 +54,8 @@ const postTask = (req, res) => {
 		})
 }
 
-module.exports = {postTask, getAllTask}
+const deleteTask = (req, res) => {
+	console.log("hello there")
+}
+
+module.exports = {postTask, getAllTask, deleteTask}
