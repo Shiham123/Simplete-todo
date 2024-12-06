@@ -3,18 +3,29 @@ const {successResponse, errorResponse} = require("../handler/responseHandler")
 const taskSchema = require("../models/taskSchema")
 
 const getAllTask = (req, res) => {
-	taskSchema
-		.find()
-		.then((task) => {
-			return successResponse(res, {
-				statusCode: 201,
-				message: "successfully get all task data",
-				payload: task,
+	const {priority} = req.query
+
+	if (!priority) {
+		taskSchema
+			.find()
+			.then((task) => {
+				return successResponse(res, {
+					statusCode: 201,
+					message: "successfully get all task data",
+					payload: task,
+				})
 			})
-		})
-		.catch((error) => {
-			errorResponse(res, {statusCode: 401, message: "not able to create user", errorPayload: error})
-		})
+			.catch((error) => {
+				errorResponse(res, {
+					statusCode: 401,
+					message: "not able to create user",
+					errorPayload: error,
+				})
+			})
+	} else {
+		// TODO: here i am build logic to find query based data
+		console.log("query", req.query)
+	}
 }
 
 // posted a task
@@ -44,25 +55,4 @@ const postTask = (req, res) => {
 		})
 }
 
-const getTaskByParams = (req, res) => {
-	const {priority} = req.params
-
-	taskSchema
-		.find({priority})
-		.then((task) => {
-			return successResponse(res, {
-				statusCode: 202,
-				message: "sorted by params",
-				payload: task,
-			})
-		})
-		.catch((error) => {
-			return errorResponse(res, {
-				statusCode: 502,
-				message: "not able to sort by params",
-				errorPayload: error,
-			})
-		})
-}
-
-module.exports = {postTask, getAllTask, getTaskByParams}
+module.exports = {postTask, getAllTask}

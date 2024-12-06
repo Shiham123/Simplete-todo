@@ -1,9 +1,9 @@
 import {useState} from "react"
-import {useGetTodosQuery} from "../app/api/api"
 import useModal from "../hooks/useModal"
 import Button from "../Shared/Button"
 import AddTodoModal from "./AddTodoModal"
 import TodoCard from "./TodoCard"
+import {useGetTodosQuery} from "../app/api/api"
 
 // typeScript type initialize here
 interface TTodo {
@@ -25,7 +25,7 @@ const TodoContainer = () => {
 
 	// from server
 	// from server
-	const {data: todos, isLoading, isError} = useGetTodosQuery(undefined)
+	const {data: todos, isLoading, isError} = useGetTodosQuery(priority)
 
 	if (isLoading) return <p>...loading</p>
 	if (isError) return <p>...error page</p>
