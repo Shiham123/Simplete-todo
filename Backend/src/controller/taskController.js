@@ -74,7 +74,7 @@ const deleteTask = (req, res) => {
 							})
 						})
 				} else {
-					return errorResponse(res, {statusCode: 200, message: "find by id but not deleted"})
+					return errorResponse(res, {statusCode: 400, message: "Task Not found id not matched"})
 				}
 			})
 			.catch((error) => {
