@@ -1,6 +1,8 @@
 // handle with local state
 // import {removeTodo, toggleIsComplete} from "../app/features/todoSlice"
 
+import {useDeleteTodosMutation} from "../app/api/api"
+
 // import {useAppDispatch} from "../app/hook"
 
 type TTodoCardProps = {
@@ -22,6 +24,12 @@ const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProp
 	// 	dispatch(toggleIsComplete(id))
 	// }
 
+	const [deleteTodos] = useDeleteTodosMutation()
+
+	const handleDelete = (taskId: string) => {
+		deleteTodos(taskId)
+	}
+
 	return (
 		<div key={id} className="bg-white rounded-md flex justify-between items-center p-4">
 			<input type="checkbox" name="" id="" />
@@ -33,7 +41,7 @@ const TodoCard = ({title, description, id, isCompleted, priority}: TTodoCardProp
 			{/* delete button */}
 			<div className="flex space-x-4">
 				{/* Todo Delete button */}
-				<button className="bg-red-500 p-2 rounded-lg">
+				<button onClick={() => handleDelete(id)} className="bg-red-500 p-2 rounded-lg">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="white"
