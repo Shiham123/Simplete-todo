@@ -62,7 +62,17 @@ const deleteTask = (req, res) => {
 			.findById(id)
 			.then((perTask) => {
 				if (perTask) {
-					// TODO: here find and delete
+					taskSchema
+						.deleteOne({_id: id})
+						.then(() => {
+							return successResponse(res, {statusCode: 200, message: "deleted successfully"})
+						})
+						.catch(() => {
+							return errorResponse(res, {
+								statusCode: 404,
+								message: "not able to delete in specific item",
+							})
+						})
 				} else {
 					return errorResponse(res, {statusCode: 200, message: "find by id but not deleted"})
 				}
