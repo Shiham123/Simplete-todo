@@ -55,7 +55,28 @@ const postTask = (req, res) => {
 }
 
 const deleteTask = (req, res) => {
-	console.log("hello there")
+	const {id} = req.params
+
+	if (id) {
+		taskSchema
+			.findById(id)
+			.then((perTask) => {
+				if (perTask) {
+					// TODO: here find and delete
+				} else {
+					return errorResponse(res, {statusCode: 200, message: "find by id but not deleted"})
+				}
+			})
+			.catch((error) => {
+				return errorResponse(res, {
+					statusCode: 406,
+					message: "id find but not find data based on id",
+					errorPayload: error,
+				})
+			})
+	} else {
+		return errorResponse(res, {statusCode: 405, message: "id not find"})
+	}
 }
 
 module.exports = {postTask, getAllTask, deleteTask}

@@ -5,6 +5,7 @@ const router = Router()
 const {postTask, getAllTask, deleteTask} = require("../controller/taskController")
 
 // routes
-router.route("/task").post(postTask).get(getAllTask).delete(deleteTask)
+router.route("/task").post(postTask).get(getAllTask)
+router.route("/task/:id").delete(deleteTask)
 
 module.exports = router
